@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S-Timeline Pro Ultra-High Quality</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script src="data.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "line-color": "#213830",
+                        "date-color": "#781f0e",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+  .tick { width: 2px; height: 10px; background-color: #213830; flex-shrink: 0; }
+
+  .news-text {
+    font-family: "Times New Roman", Times, serif;
+    color: black;
+    line-height: 1.2;
+    font-size: 10px;
+    text-align: left;
+    word-break: break-word;
+
+    /* NUEVO: respeta \n del string */
+    white-space: pre-wrap;
+  }
+
+  .date-text {
+    font-family: "Libre Franklin", sans-serif;
+    color: #781f0e;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 10px;
+    text-align: left;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .content-area {
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  #capture-area {
+    width: 1600px;
+    min-height: 900px;
+    background: white;
+    padding: 60px 80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+</style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-5xl mx-auto mb-4 flex justify-end">
+        <button onclick="exportTimeline()" class="bg-[#213830] text-white px-6 py-2 rounded text-sm font-bold shadow-lg hover:bg-[#2d4a40] transition-colors">
+            Exportar PNG Ultra-Alta Calidad
+        </button>
+    </div>
+
+    <div id="capture-area">
+        <div id="timeline-app" class="flex flex-col"></div>
+    </div>
+
+    <script>
+        function renderTimeline(data) {
+            const container = document.getElementById("timeline-app");
+            const rows = data.reduce((acc, item) => {
+                const f = parseInt(item.fila);
+                if (!acc[f]) acc[f] = [];
+                acc[f].push(item);
+                return acc;
+            }, {});
+
+            let html = "";
+            const rowKeys = Object.keys(rows).sort((a,b) => a-b);
+
+            rowKeys.forEach((rowKey) => {
+                const num = parseInt(rowKey);
+                const items = rows[rowKey];
+
+                if (num === 1) {
+                    // FILA 1: items-stretch para alineación superior de fechas
+                    html += `
+                    <div class="border-b-2 border-line-color w-full">
+                        <div class="flex flex-row-reverse justify-around items-stretch">
+                            ${items.map(item => `
+                                <div class="flex flex-col items-center justify-between pb-0">
+                                    <div class="content-area px-2 pb-4">
+                                        <time class="date-text">${item.fecha}</time>
+                                        <p class="news-text">${item.resumen}</p>
+                                    </div>
+                                    <div class="tick"></div>
+                                </div>`).join("")}
+                        </div>
+                    </div>
+                    <div class="h-16 border-l-2 border-line-color -mt-[2px] mr-auto"></div>`;
+
+                } else if (num === 2) {
+                    html += `
+                    <div class="border-t-2 border-r-2 border-b-2 border-line-color -mt-[2px] w-full">
+                        <div class="flex justify-around items-stretch">
+                            ${items.map(item => `
+                                <div class="flex flex-col items-center">
+                                    <div class="tick"></div>
+                                    <div class="content-area pt-2 px-2 pb-4">
+                                        <time class="date-text">${item.fecha}</time>
+                                        <p class="news-text">${item.resumen}</p>
+                                    </div>
+                                </div>`).join("")}
+                        </div>
+                    </div>`;
+
+                } else if (num === 3) {
+                    html += `
+                    <div class="border-l-2 border-b-2 border-line-color -mt-[2px] w-full">
+                        <div class="flex flex-row-reverse justify-around items-stretch">
+                            ${items.map(item => `
+                                <div class="flex flex-col items-center">
+                                    <div class="tick"></div>
+                                    <div class="content-area pt-2 px-2 pb-4">
+                                        <time class="date-text">${item.fecha}</time>
+                                        <p class="news-text">${item.resumen}</p>
+                                    </div>
+                                </div>`).join("")}
+                        </div>
+                    </div>`;
+
+                } else if (num === 4) {
+                    html += `
+                    <div class="-mt-[2px] w-full">
+                        <div class="flex justify-around items-stretch">
+                            ${items.map(item => `
+                                <div class="flex flex-col items-center">
+                                    <div class="tick"></div>
+                                    <div class="content-area pt-2 px-2">
+                                        <time class="date-text">${item.fecha}</time>
+                                        <p class="news-text">${item.resumen}</p>
+                                    </div>
+                                </div>`).join("")}
+                        </div>
+                    </div>`;
+                }
+            });
+            container.innerHTML = html;
+        }
+
+        async function exportTimeline() {
+            const element = document.getElementById("capture-area");
+            // SE AUMENTA LA ESCALA A 8 PARA MÁXIMA CALIDAD DE ZOOM
+            const canvas = await html2canvas(element, {
+                scale: 8, 
+                backgroundColor: "#ffffff",
+                useCORS: true,
+            });
+            const link = document.createElement("a");
+            link.download = `Cronologia_Final_UltraHD.png`;
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        }
+
+        renderTimeline(newsData);
+    </script>
+</body>
+</html>
