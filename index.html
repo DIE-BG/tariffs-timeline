@@ -14,7 +14,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-    <script src="data.js?v=20260223_v3"></script>
+    <script src="data.js?v=20260224_v1"></script>
 
     <script>
         tailwind.config = {
@@ -28,6 +28,7 @@
             },
         };
     </script>
+
 <style>
   .tick { width: 2px; height: 10px; background-color: #213830; flex-shrink: 0; }
 
@@ -38,8 +39,6 @@
     font-size: 10px;
     text-align: left;
     word-break: break-word;
-
-    /* NUEVO: respeta \n del string */
     white-space: pre-wrap;
   }
 
@@ -63,7 +62,7 @@
   }
 
   #capture-area {
-    width: 1600px;
+    width: 1700px;          /* <-- MÁS ANCHA (antes 1600px) */
     min-height: 900px;
     background: white;
     padding: 60px 80px;
@@ -75,8 +74,10 @@
 </style>
 
 </head>
-<body class="bg-gray-100 p-6">
-    <div class="max-w-5xl mx-auto mb-4 flex justify-end">
+
+<body class="bg-gray-100 p-6 overflow-x-auto">
+    <!-- Antes: max-w-5xl (limitaba el ancho del header) -->
+    <div class="w-full mx-auto mb-4 flex justify-end">
         <button onclick="exportTimeline()" class="bg-[#213830] text-white px-6 py-2 rounded text-sm font-bold shadow-lg hover:bg-[#2d4a40] transition-colors">
             Exportar a PNG
         </button>
@@ -104,7 +105,6 @@
                 const items = rows[rowKey];
 
                 if (num === 1) {
-                    // FILA 1: items-stretch para alineación superior de fechas
                     html += `
                     <div class="border-b-2 border-line-color w-full">
                         <div class="flex flex-row-reverse justify-around items-stretch">
@@ -171,9 +171,8 @@
 
         async function exportTimeline() {
             const element = document.getElementById("capture-area");
-            // SE AUMENTA LA ESCALA A 8 PARA MÁXIMA CALIDAD DE ZOOM
             const canvas = await html2canvas(element, {
-                scale: 8, 
+                scale: 8,
                 backgroundColor: "#ffffff",
                 useCORS: true,
             });
