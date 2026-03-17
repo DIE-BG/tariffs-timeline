@@ -9,180 +9,198 @@
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
 
-    <title>Línea de tiempo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@700&display=swap" rel="stylesheet" />
+    <title>Línea de Tiempo Interactiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-    <script src="data.js?v=20260303_v1"></script>
+    <script src="data.js?v=20260317_v2"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        "line-color": "#213830",
-                        "date-color": "#781f0e",
+                        "brand-green": "#213830",
+                        "brand-red": "#781f0e",
+                        "brand-bg": "#f8f9fa",
                     },
+                    fontFamily: {
+                        sans: ['"Libre Franklin"', 'sans-serif'],
+                        serif: ['"Merriweather"', 'serif'],
+                    }
                 },
             },
         };
     </script>
 
 <style>
-  .tick { width: 2px; height: 10px; background-color: #213830; flex-shrink: 0; }
-
-  .news-text {
-    font-family: "Times New Roman", Times, serif;
-    color: black;
-    line-height: 1.2;
-    font-size: 10px;
-    text-align: left;
-    word-break: break-word;
-    white-space: pre-wrap;
+  .timeline-card {
+    transition: all 0.3s ease;
+  }
+  .timeline-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .timeline-marker {
+    transition: all 0.3s ease;
+  }
+  .timeline-item:hover .timeline-marker {
+    background-color: #781f0e;
+    transform: translateX(-50%) scale(1.2);
+    border-color: #f8f9fa;
   }
 
-  .date-text {
-    font-family: "Libre Franklin", sans-serif;
-    color: #781f0e;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    font-size: 10px;
-    text-align: left;
-    display: block;
-    margin-bottom: 2px;
+  /* Animación de acordeón suave usando CSS Grid */
+  .history-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
-
-  .content-area {
-    width: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  
+  .history-wrapper.open {
+    grid-template-rows: 1fr;
   }
-
-  #capture-area {
-    width: 1700px;          /* <-- MÁS ANCHA (antes 1600px) */
-    min-height: 900px;
-    background: white;
-    padding: 60px 80px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  
+  .history-inner {
+    overflow: hidden;
   }
 </style>
 
 </head>
 
-<body class="bg-gray-100 p-6 overflow-x-auto">
-    <!-- Antes: max-w-5xl (limitaba el ancho del header) -->
-    <div class="w-full mx-auto mb-4 flex justify-end">
-        <button onclick="exportTimeline()" class="bg-[#213830] text-white px-6 py-2 rounded text-sm font-bold shadow-lg hover:bg-[#2d4a40] transition-colors">
-            Exportar a PNG
-        </button>
-    </div>
+<body class="bg-brand-bg text-gray-800 min-h-screen overflow-x-hidden antialiased">
 
-    <div id="capture-area">
-        <div id="timeline-app" class="flex flex-col"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-brand-green mb-4 font-serif">
+                Cronología de Tarifas
+            </h1>
+            <div class="h-1 w-24 bg-brand-red mx-auto rounded"></div>
+            <p class="mt-4 text-gray-600 max-w-2xl mx-auto font-serif">
+                Evolución de las medidas comerciales y arancelarias de Estados Unidos
+            </p>
+        </div>
+
+        <!-- Timeline Container -->
+        <div class="relative max-w-5xl mx-auto">
+            <!-- Vertical Line (Central for Desktop, Left for Mobile) -->
+            <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 bg-brand-green/20 md:transform md:-translate-x-1/2 rounded-full"></div>
+
+            <div id="timeline-app" class="relative">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+
     </div>
 
     <script>
         function renderTimeline(data) {
             const container = document.getElementById("timeline-app");
-            const rows = data.reduce((acc, item) => {
-                const f = parseInt(item.fila);
-                if (!acc[f]) acc[f] = [];
-                acc[f].push(item);
-                return acc;
-            }, {});
+            const totalItems = data.length;
+            const visibleCount = 4;
+            
+            // Calculamos el punto de corte (todo lo anterior a los ultimos 4)
+            const cutoffIndex = Math.max(0, totalItems - visibleCount);
+            const hasHiddenItems = cutoffIndex > 0;
 
             let html = "";
-            const rowKeys = Object.keys(rows).sort((a,b) => a-b);
 
-            rowKeys.forEach((rowKey) => {
-                const num = parseInt(rowKey);
-                const items = rows[rowKey];
+            // Botón para cargar anteriores
+            if (hasHiddenItems) {
+                html += `
+                <div class="w-full flex justify-center mb-8 relative z-10">
+                    <button id="toggle-btn" onclick="toggleHistory(${cutoffIndex})" class="bg-brand-green text-white px-6 py-2 rounded-full shadow-md hover:bg-brand-red transition-colors duration-300 text-sm font-semibold font-sans border-4 border-brand-bg cursor-pointer z-20">
+                        Ver noticias anteriores (+${cutoffIndex})
+                    </button>
+                </div>`;
+            }
 
-                if (num === 1) {
-                    html += `
-                    <div class="border-b-2 border-line-color w-full">
-                        <div class="flex flex-row-reverse justify-around items-stretch">
-                            ${items.map(item => `
-                                <div class="flex flex-col items-center justify-between pb-0">
-                                    <div class="content-area px-2 pb-4">
-                                        <time class="date-text">${item.fecha}</time>
-                                        <p class="news-text">${item.resumen}</p>
-                                    </div>
-                                    <div class="tick"></div>
-                                </div>`).join("")}
-                        </div>
+            // Función helper para generar el HTML de un item
+            const createItemHtml = (item, i) => {
+                const isEven = i % 2 === 0;
+                return `
+                <div class="timeline-item flex flex-col md:flex-row items-start md:items-center justify-between w-full group relative">
+                    
+                    <!-- Left Side (Content for Even, Empty/Hidden for Odd) -->
+                    <div class="w-full md:w-[45%] ${isEven ? 'pl-16 md:pl-0 md:pr-8 md:text-right' : 'hidden md:block'}">
+                        ${isEven ? renderCard(item) : ''}
                     </div>
-                    <div class="h-16 border-l-2 border-line-color -mt-[2px] mr-auto"></div>`;
 
-                } else if (num === 2) {
-                    html += `
-                    <div class="border-t-2 border-r-2 border-b-2 border-line-color -mt-[2px] w-full">
-                        <div class="flex justify-around items-stretch">
-                            ${items.map(item => `
-                                <div class="flex flex-col items-center">
-                                    <div class="tick"></div>
-                                    <div class="content-area pt-2 px-2 pb-4">
-                                        <time class="date-text">${item.fecha}</time>
-                                        <p class="news-text">${item.resumen}</p>
-                                    </div>
-                                </div>`).join("")}
-                        </div>
-                    </div>`;
+                    <!-- Marker (Center/Left) -->
+                    <div class="absolute left-6 md:left-1/2 w-5 h-5 bg-brand-green rounded-full border-4 border-white shadow-md transform -translate-x-1/2 z-10 timeline-marker mt-6 md:mt-0"></div>
 
-                } else if (num === 3) {
-                    html += `
-                    <div class="border-l-2 border-b-2 border-line-color -mt-[2px] w-full">
-                        <div class="flex flex-row-reverse justify-around items-stretch">
-                            ${items.map(item => `
-                                <div class="flex flex-col items-center">
-                                    <div class="tick"></div>
-                                    <div class="content-area pt-2 px-2 pb-4">
-                                        <time class="date-text">${item.fecha}</time>
-                                        <p class="news-text">${item.resumen}</p>
-                                    </div>
-                                </div>`).join("")}
-                        </div>
-                    </div>`;
+                    <!-- Right Side (Content for Odd, Empty/Hidden for Even) -->
+                    <div class="w-full md:w-[45%] ${!isEven ? 'pl-16 md:pl-8 md:text-left' : 'hidden md:block'}">
+                         ${!isEven ? renderCard(item) : ''}
+                    </div>
+                </div>`;
+            };
 
-                } else if (num === 4) {
-                    html += `
-                    <div class="-mt-[2px] w-full">
-                        <div class="flex justify-around items-stretch">
-                            ${items.map(item => `
-                                <div class="flex flex-col items-center">
-                                    <div class="tick"></div>
-                                    <div class="content-area pt-2 px-2">
-                                        <time class="date-text">${item.fecha}</time>
-                                        <p class="news-text">${item.resumen}</p>
-                                    </div>
-                                </div>`).join("")}
-                        </div>
-                    </div>`;
+            // 1. Contenedor Historial (Oculto por defecto)
+            if (hasHiddenItems) {
+                html += `<div id="history-container" class="history-wrapper mb-8">
+                            <div class="history-inner space-y-8">`;
+                
+                for (let i = 0; i < cutoffIndex; i++) {
+                    html += createItemHtml(data[i], i);
                 }
-            });
+
+                html += `   </div>
+                        </div>`;
+            }
+
+            // 2. Contenedor Reciente (Siempre visible)
+            html += `<div class="space-y-8">`;
+            for (let i = cutoffIndex; i < totalItems; i++) {
+                html += createItemHtml(data[i], i);
+            }
+            html += `</div>`;
+
             container.innerHTML = html;
         }
 
-        async function exportTimeline() {
-            const element = document.getElementById("capture-area");
-            const canvas = await html2canvas(element, {
-                scale: 8,
-                backgroundColor: "#ffffff",
-                useCORS: true,
-            });
-            const link = document.createElement("a");
-            link.download = `linea_tiempo_tarifas.png`;
-            link.href = canvas.toDataURL("image/png");
-            link.click();
+        // Función para expandir/contraer la línea de tiempo
+        function toggleHistory(count) {
+            const wrapper = document.getElementById("history-container");
+            const btn = document.getElementById("toggle-btn");
+            
+            if (!wrapper) return;
+
+            // Toggle de la clase 'open' para activar la animación de grid
+            wrapper.classList.toggle("open");
+            const isOpen = wrapper.classList.contains("open");
+
+            // Actualizar texto del botón
+            if (isOpen) {
+                btn.innerText = "Ver menos";
+                // Opcional: cambiar color o estilo al estar abierto
+            } else {
+                btn.innerText = `Ver noticias anteriores (+${count})`;
+                // Scroll suave hacia arriba si el usuario estaba muy abajo (opcional, pero recomendado UX)
+                // btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
 
-        renderTimeline(newsData);
+        function renderCard(item) {
+            return `
+                <div class="timeline-card bg-white p-5 rounded-lg shadow border-l-4 border-brand-red mb-2">
+                    <time class="block text-sm font-bold text-brand-red uppercase tracking-wide mb-2 font-sans">
+                        ${item.fecha}
+                    </time>
+                    <p class="text-gray-700 text-sm leading-relaxed font-serif">
+                        ${item.resumen}
+                    </p>
+                </div>
+            `;
+        }
+
+        // Ensure data is loaded
+        if (typeof newsData !== 'undefined') {
+            renderTimeline(newsData);
+        }
     </script>
 </body>
 </html>
