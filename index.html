@@ -50,21 +50,6 @@
     transform: translateX(-50%) scale(1.2);
     border-color: #f8f9fa;
   }
-
-  /* Animación de acordeón suave usando CSS Grid */
-  .history-wrapper {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .history-wrapper.open {
-    grid-template-rows: 1fr;
-  }
-  
-  .history-inner {
-    overflow: hidden;
-  }
 </style>
 
 </head>
@@ -99,29 +84,16 @@
     <script>
         function renderTimeline(data) {
             const container = document.getElementById("timeline-app");
-            const totalItems = data.length;
-            const visibleCount = 4;
             
-            // Calculamos el punto de corte (todo lo anterior a los ultimos 4)
-            const cutoffIndex = Math.max(0, totalItems - visibleCount);
-            const hasHiddenItems = cutoffIndex > 0;
+            // Invertimos los datos para mostrar primero lo más reciente
+            const sortedData = [...data].reverse();
 
-            let html = "";
-
-            // Botón para cargar anteriores
-            if (hasHiddenItems) {
+            let html = '<div class="space-y-8">';
+            
+            sortedData.forEach((item, index) => {
+                const isEven = index % 2 === 0;
+                
                 html += `
-                <div class="w-full flex justify-center mb-8 relative z-10">
-                    <button id="toggle-btn" onclick="toggleHistory(${cutoffIndex})" class="bg-brand-green text-white px-6 py-2 rounded-full shadow-md hover:bg-brand-red transition-colors duration-300 text-sm font-semibold font-sans border-4 border-brand-bg cursor-pointer z-20">
-                        Ver noticias anteriores (+${cutoffIndex})
-                    </button>
-                </div>`;
-            }
-
-            // Función helper para generar el HTML de un item
-            const createItemHtml = (item, i) => {
-                const isEven = i % 2 === 0;
-                return `
                 <div class="timeline-item flex flex-col md:flex-row items-start md:items-center justify-between w-full group relative">
                     
                     <!-- Left Side (Content for Even, Empty/Hidden for Odd) -->
@@ -137,51 +109,10 @@
                          ${!isEven ? renderCard(item) : ''}
                     </div>
                 </div>`;
-            };
+            });
 
-            // 1. Contenedor Historial (Oculto por defecto)
-            if (hasHiddenItems) {
-                html += `<div id="history-container" class="history-wrapper mb-8">
-                            <div class="history-inner space-y-8">`;
-                
-                for (let i = 0; i < cutoffIndex; i++) {
-                    html += createItemHtml(data[i], i);
-                }
-
-                html += `   </div>
-                        </div>`;
-            }
-
-            // 2. Contenedor Reciente (Siempre visible)
-            html += `<div class="space-y-8">`;
-            for (let i = cutoffIndex; i < totalItems; i++) {
-                html += createItemHtml(data[i], i);
-            }
-            html += `</div>`;
-
+            html += '</div>';
             container.innerHTML = html;
-        }
-
-        // Función para expandir/contraer la línea de tiempo
-        function toggleHistory(count) {
-            const wrapper = document.getElementById("history-container");
-            const btn = document.getElementById("toggle-btn");
-            
-            if (!wrapper) return;
-
-            // Toggle de la clase 'open' para activar la animación de grid
-            wrapper.classList.toggle("open");
-            const isOpen = wrapper.classList.contains("open");
-
-            // Actualizar texto del botón
-            if (isOpen) {
-                btn.innerText = "Ver menos";
-                // Opcional: cambiar color o estilo al estar abierto
-            } else {
-                btn.innerText = `Ver noticias anteriores (+${count})`;
-                // Scroll suave hacia arriba si el usuario estaba muy abajo (opcional, pero recomendado UX)
-                // btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
         }
 
         function renderCard(item) {
