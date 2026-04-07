@@ -50,6 +50,31 @@
     transform: translateX(-50%) scale(1.2);
     border-color: #f8f9fa;
   }
+
+  .timeline-summary {
+    position: relative;
+    overflow: hidden;
+    max-height: 7.5rem;
+  }
+
+  .timeline-summary.is-collapsible:not(.is-expanded)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3rem;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff 85%);
+    pointer-events: none;
+  }
+
+  .timeline-summary.is-expanded {
+    max-height: none;
+  }
+
+  .timeline-summary-toggle[hidden] {
+    display: none;
+  }
 </style>
 
 </head>
@@ -82,6 +107,47 @@
     </div>
 
     <script>
+        function normalizeSummaryText(text) {
+            return String(text ?? "")
+                .replace(/\r\n/g, "\n")
+                .replace(/\\n/g, "\n");
+        }
+
+        function escapeHtml(text) {
+            const replacements = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+            };
+
+            return String(text ?? "").replace(/[&<>"']/g, (character) => replacements[character]);
+        }
+
+        function formatSummaryText(text) {
+            return escapeHtml(normalizeSummaryText(text)).replace(/\n/g, "<br />");
+        }
+
+        function initializeExpandableSummaries(root) {
+            root.querySelectorAll(".timeline-summary").forEach((summary) => {
+                const toggle = summary.parentElement.querySelector(".timeline-summary-toggle");
+
+                if (!toggle) {
+                    return;
+                }
+
+                const isOverflowing = summary.scrollHeight > summary.clientHeight + 1;
+                summary.classList.toggle("is-collapsible", isOverflowing);
+                toggle.hidden = !isOverflowing;
+
+                if (!isOverflowing) {
+                    summary.classList.remove("is-expanded");
+                    toggle.textContent = "Leer más";
+                }
+            });
+        }
+
         function renderTimeline(data) {
             const container = document.getElementById("timeline-app");
             
@@ -113,20 +179,48 @@
 
             html += '</div>';
             container.innerHTML = html;
+
+            requestAnimationFrame(() => initializeExpandableSummaries(container));
+
+            if (document.fonts?.ready) {
+                document.fonts.ready.then(() => initializeExpandableSummaries(container));
+            }
         }
 
         function renderCard(item) {
             return `
                 <div class="timeline-card bg-white p-5 rounded-lg shadow border-l-4 border-brand-red mb-2">
                     <time class="block text-sm font-bold text-brand-red uppercase tracking-wide mb-2 font-sans">
-                        ${item.fecha}
+                        ${escapeHtml(item.fecha)}
                     </time>
-                    <p class="text-gray-700 text-sm leading-relaxed font-serif">
-                        ${item.resumen}
-                    </p>
+                    <div>
+                        <div class="timeline-summary text-gray-700 text-sm leading-relaxed font-serif">
+                            ${formatSummaryText(item.resumen)}
+                        </div>
+                        <button type="button" class="timeline-summary-toggle mt-3 text-xs font-bold uppercase tracking-wide text-brand-red transition-colors hover:text-brand-green" hidden>
+                            Leer más
+                        </button>
+                    </div>
                 </div>
             `;
         }
+
+        document.addEventListener("click", (event) => {
+            const toggle = event.target.closest(".timeline-summary-toggle");
+
+            if (!toggle) {
+                return;
+            }
+
+            const summary = toggle.parentElement.querySelector(".timeline-summary");
+
+            if (!summary) {
+                return;
+            }
+
+            const isExpanded = summary.classList.toggle("is-expanded");
+            toggle.textContent = isExpanded ? "Leer menos" : "Leer más";
+        });
 
         // Ensure data is loaded
         if (typeof newsData !== 'undefined') {
