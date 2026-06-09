@@ -1,6 +1,6 @@
-Search for all factual news published between May 5 and May 12, 2026, regarding
-tariff-related actions taken by the United States government.  Include all
-industries and all types of actions: new tariffs, increases, suspensions,
+Search for all factual news published between June 02 and June 09, 2026,
+regarding tariff-related actions taken by the United States government.  Include
+all industries and all types of actions: new tariffs, increases, suspensions,
 official threats, or proposals.  Also include any retaliatory measures announced
 or implemented by other countries in response to U.S.  tariffs.  Focus strictly
 on factual information — exclude any editorial commentary or opinion.  Provide a
