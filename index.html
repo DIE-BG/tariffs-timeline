@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <script src="data.js?v=20260609_v1"></script>
+    <script src="data.js?v=20260721_v1"></script>
 
     <script>
         tailwind.config = {
@@ -126,7 +126,12 @@
         }
 
         function formatSummaryText(text) {
-            return escapeHtml(normalizeSummaryText(text)).replace(/\n/g, "<br />");
+            return escapeHtml(normalizeSummaryText(text))
+                .replace(
+                    /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
+                    '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-brand-red underline hover:text-brand-green">$1</a>'
+                )
+                .replace(/\n/g, "<br />");
         }
 
         function normalizeStatus(status) {
