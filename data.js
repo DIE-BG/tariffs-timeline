@@ -76,4 +76,13 @@ const newsData = [
         status: "implemented", 
         fila: 5 
     },
+    // Nueva entrada, Sección 232 farmacéuticos, entrada en vigor primer grupo
+    { 
+        fecha: "31 de julio de 2026", 
+        resumen: `Entró en vigor, para el primer grupo de empresas designadas (Anexo III), el arancel de la Sección 232 sobre productos farmacéuticos patentados, ingredientes farmacéuticos activos y derivados, establecido mediante la Proclamación 11020 del 2 de abril de 2026. La tasa general es del 100% menos el arancel base, con excepciones de 0% para ciertos productos o empresas, 10% para productos del Reino Unido, 15% menos el arancel base para algunos socios (Unión Europea, Japón, Corea del Sur, Suiza) y 20% para bienes sujetos a planes de relocalización productiva. El resto de las empresas queda sujeto a la medida a partir del 29 de septiembre de 2026.
+
+        [Proclamación 11020, Casa Blanca](https://www.whitehouse.gov/presidential-actions/2026/04/adjusting-imports-of-pharmaceuticals-and-pharmaceutical-ingredients-into-the-united-states/)`, 
+        status: "implemented", 
+        fila: 5 
+    },
 ];
