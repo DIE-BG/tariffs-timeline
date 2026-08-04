@@ -53,14 +53,27 @@ const newsData = [
     { fecha: "7 de mayo de 2026", resumen: "El Tribunal de Comercio Internacional de EE.UU. (CIT) emitió un fallo 2-1 declarando ilegal el arancel global del 10% impuesto por Trump bajo la Sección 122 de la Ley de Comercio de 1974, ordenando la devolución de aranceles con intereses a los tres demandantes (Basic Fun!, Burlap & Barrel y el Estado de Washington). El tribunal rechazó otorgar un alivio a nivel nacional, por lo que el arancel continúa cobrándose al resto de los importadores mientras la administración apela.", status: "legal_ruling", fila: 4 },
     { fecha: "02 de junio de 2026", resumen: "La presidencia de EE. UU. propone aranceles adicionales bajo la Sección 301 a 60 economías por fallas en la aplicación de leyes contra el trabajo forzado. Se propone un 10% adicional a países que tienen legislación pero no la aplican efectivamente (incluyendo Guatemala, El Salvador, Canadá, México y la Unión Europea, entre otros); y un 12.5% adicional a países que carecen de dicha legislación (incluyendo China, India y Japón, entre otros).\n\nLos bienes cubiertos por el T-MEC y los sujetos a aranceles de la Sección 232 quedan exentos. La medida aún no está en vigor y se espera una decisión final después del 7 de julio de 2026.", status: "threat", fila: 5 },
     { fecha: "08 de junio de 2026", resumen: "Entran en vigor las nuevas tasas arancelarias de la Sección 232 sobre acero, aluminio y cobre, conforme a la proclamación firmada el 1 de junio de 2026. La medida estará vigente hasta el 31 de diciembre de 2027.\n\nRespecto a maquinaria, los equipos agrícolas como cosechadoras bajan su arancel de 25% a 15%. Los montacargas y equipos similares provenientes de países con acuerdo comercial vigente con EE. UU. quedan sujetos a esa misma tasa del 15%.\n\nSobre los umbrales de contenido local, los productos fabricados con al menos un 85% de metal fundido y procesado en EE. UU. califican para una tasa reducida del 10%. Anteriormente, ese umbral era del 95%, por lo que la reducción amplía el número de productos que pueden acceder a la tasa preferencial.\n\nFinalmente, se amplía la lista de productos cubiertos para incluir nuevos derivados de aluminio y acero, como planchas para impresión y estanterías metálicas.", status: "implemented", fila: 5 },
+// Entrada consolidada, 20 de julio de 2026 (Canadá y Brasil)
     { 
-        fecha: "21 de julio de 2026", 
-        resumen: `El presidente estadounidense, Donald Trump, impuso un arancel del 50% a una amplia gama de productos importados de Canadá, en represalia por lo que llamó "trato desigual" a los automóviles, los lácteos y el alcohol estadounidenses.
-        
-        En la lista de objetivos se encuentran artículos de consumo cotidiano como el vino y los palos de hockey, así como bienes industriales como el cemento. Sin embargo, se salvarán varias exportaciones clave, entre ellas energía, potasa, minerales críticos y pescado.
-        
-        [Informe de la Casa Blanca](https://www.whitehouse.gov/fact-sheets/2026/07/fact-sheet-president-donald-j-trump-imposes-additional-tariffs-on-canada/)`, 
+        fecha: "20 de julio de 2026", 
+        resumen: `La Presidencia de EE. UU. firmó tres proclamaciones bajo la Sección 338 de la Ley Arancelaria de 1930, imponiendo un arancel adicional del 50% a cerca de 554 líneas arancelarias de Canadá, entre ellas automóviles, lácteos, alcohol, vino, palos de hockey y cemento. La medida entra en vigor el 19 de agosto de 2026 y aplica a los bienes cubiertos aunque califiquen como originarios bajo el T-MEC (un certificado de origen válido no exime del arancel). Quedan exentas energía, potasa, minerales críticos, pescado y bienes ya sujetos a aranceles de la Sección 232.
+
+        [Informe de la Casa Blanca](https://www.whitehouse.gov/fact-sheets/2026/07/fact-sheet-president-donald-j-trump-imposes-additional-tariffs-on-canada/)
+
+        El mismo día, la Oficina del Representante Comercial de EE. UU. (USTR) formalizó, mediante notificación en el Registro Federal, un arancel adicional del 25% sobre la mayoría de los productos originarios de Brasil, al concluir una investigación de la Sección 301 sobre prácticas comerciales consideradas injustificadas (comercio digital y pagos electrónicos, aranceles preferenciales, protección de propiedad intelectual, acceso al mercado de etanol y deforestación ilegal). La medida entra en vigor el 22 de julio de 2026 y afecta cerca del 18% de las exportaciones brasileñas hacia EE. UU. incluyendo acero, hierro, etanol, maquinaria, textiles, azúcar y productos agrícolas. Quedan exentos los bienes ya cubiertos por aranceles de la Sección 232 y ciertas materias primas sin oferta doméstica suficiente.
+
+        [Registro Federal](https://www.federalregister.gov/documents/2026/07/20/2026-14542/notice-of-action-brazils-acts-policies-and-practices-related-to-digital-trade-and-electronic-payment)`, 
         status: "implemented", 
         fila: 5
+    },
+
+    // Nueva entrada, Trabajo forzado, Sección 301 (60 economías)
+    { 
+        fecha: "23 de julio de 2026", 
+        resumen: `La Presidencia de EE. UU. instruyó a la USTR imponer aranceles bajo la Sección 301 a 60 economías por no prohibir, o no aplicar de forma efectiva, la prohibición de importaciones vinculadas a trabajo forzado. La medida entra en vigor el 24 de julio de 2026, en el mismo momento en que vence el recargo temporal de la Sección 122. Aplica un arancel adicional del 10% a economías con legislación parcial o comprometida (incluyendo Guatemala, El Salvador, Canadá y México) y del 12.5% a economías sin dicha legislación (incluyendo China, Brasil e India, entre otras); para la Unión Europea, Taiwán, Japón, Corea del Sur y Suiza, el arancel se limita para que, sumado al arancel general vigente, no supere el 10% o 12.5% según el caso. Quedan exentos los bienes que califican bajo el T-MEC, el CAFTA-DR (incluye textiles de Guatemala, El Salvador y Honduras, entre otros) y los productos ya sujetos a aranceles de la Sección 232.
+
+        [Informe de la USTR](https://ustr.gov/about/policy-offices/press-office/press-releases/2026/july/ustr-takes-action-forced-labor-section-301-investigations)`, 
+        status: "implemented", 
+        fila: 5 
     },
 ];

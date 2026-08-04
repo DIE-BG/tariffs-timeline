@@ -1,4 +1,4 @@
-Search for all factual news published between June 02 and June 09, 2026,
+Search for all factual news published between July 28 and August 04, 2026,
 regarding tariff-related actions taken by the United States government.  Include
 all industries and all types of actions: new tariffs, increases, suspensions,
 official threats, or proposals.  Also include any retaliatory measures announced
