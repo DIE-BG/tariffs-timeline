@@ -85,4 +85,12 @@ const newsData = [
         status: "implemented", 
         fila: 5 
     },
+    { 
+        fecha: "6 de agosto de 2026", 
+        resumen: `La Presidencia de EE. UU. firmó una proclamación bajo la Sección 232 que ajusta las importaciones de polisilicio y sus derivados, tras una investigación del Departamento de Comercio que determinó una amenaza a la seguridad nacional en ese sector. La medida entra en vigor el 4 de diciembre de 2026 y combina dos mecanismos: un programa de precios mínimos de importación (21 USD por kilogramo de polisilicio, 100 USD por kilogramo de lingotes y obleas, 0.22 USD por vatio de celdas solares y 0.38 USD por vatio de módulos solares) y un arancel adicional del 15% sobre los derivados del polisilicio. Para productos de Japón, Corea del Sur, Taiwán, Suiza, Liechtenstein y la Unión Europea, el arancel de la Sección 232 se ajusta para que, sumado a la tasa general vigente, no supere el 15%; para el Reino Unido, la tasa queda en 10%. La proclamación reemplaza un arancel de salvaguardia más limitado sobre celdas y módulos solares que había expirado en febrero de 2026, e incluye un programa de incentivos para empresas que construyan nueva capacidad de producción de polisilicio, lingotes, obleas y celdas en EE. UU.
+
+        [Proclamación, Casa Blanca](https://www.whitehouse.gov/presidential-actions/2026/08/adjusting-imports-of-polysilicon-and-its-derivatives-into-the-united-states/)`, 
+            status: "implemented", 
+        fila: 5 
+    },
 ];
