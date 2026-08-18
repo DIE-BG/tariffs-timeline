@@ -93,4 +93,20 @@ const newsData = [
             status: "implemented", 
         fila: 5 
     },
+    { 
+        fecha: "13 de agosto de 2026", 
+        resumen: `La presidencia de EE. UU. firmó una proclamación bajo la Sección 232 que ajusta las importaciones de sistemas de aeronaves no tripuladas (UAS, por sus siglas en inglés) y sus componentes, tras una investigación del Departamento de Comercio que determinó una amenaza a la seguridad nacional en ese sector. La medida entra en vigor el 3 de septiembre de 2026 para la mayoría de los productos cubiertos y el 9 de febrero de 2027 para un segundo grupo de componentes.
+
+        Establece un arancel del 100% sobre drones con peso máximo de despegue superior a 25 kilogramos, drones con cámaras térmicas, estaciones de acoplamiento y ciertos componentes críticos (Anexo I), y un arancel del 25% sobre drones con peso máximo de despegue de 25 kilogramos o menos (Anexo II).
+
+        Un tercer grupo de componentes (Anexo III) queda sujeto también a un arancel del 25%, con entrada en vigor postergada 180 días para incentivar la producción nacional.
+
+        Para productos de Japón, Corea del Sur, Taiwán, Suiza, Liechtenstein y la Unión Europea, el arancel queda limitado a un máximo de 15% (incluyendo el arancel general vigente), siempre que se certifique que los componentes críticos y la tecnología provienen de esos países o de EE. UU.; para el Reino Unido, el límite es de 10%.
+
+        La proclamación también crea un programa de incentivos para empresas que construyan nueva capacidad de producción de drones y sus componentes en territorio estadounidense.
+
+        [Proclamación, Casa Blanca](https://www.whitehouse.gov/presidential-actions/2026/08/adjusting-imports-of-unmanned-aircraft-systems-and-unmanned-aircraft-systems-components-into-the-united-states/)`, 
+        status: "announced", 
+        fila: 5 
+    },
 ];
