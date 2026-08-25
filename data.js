@@ -109,4 +109,12 @@ const newsData = [
         status: "announced", 
         fila: 5 
     },
+    { 
+    fecha: "22 de agosto de 2026", 
+    resumen: `La Presidencia de EE. UU. firmó el 20 de julio de 2026 tres proclamaciones bajo la Sección 338 de la Ley Arancelaria de 1930, que imponen un arancel adicional del 50% sobre determinados productos canadienses de [bebidas alcohólicas](https://www.whitehouse.gov/presidential-actions/2026/07/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-alcoholic-beverages/), [lácteos](https://www.whitehouse.gov/presidential-actions/2026/07/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-dairy/) y [vehículos automotores](https://www.whitehouse.gov/presidential-actions/2026/07/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-motor-vehicles/), al determinar que Canadá discrimina en contra del comercio estadounidense en esos tres sectores. En bebidas alcohólicas, la medida responde a la suspensión, desde marzo de 2025, de la compra, distribución y venta de licores estadounidenses por parte de las juntas provinciales canadienses, sin restricciones equivalentes hacia otros países. En lácteos, se cuestiona que Canadá permita a minoristas acceder a la cuota arancelaria de quesos bajo el acuerdo con la Unión Europea, pero no bajo el T-MEC, lo que limita el acceso de exportadores estadounidenses. En vehículos, se objeta el esquema arancelario canadiense del 25% sobre autos estadounidenses no calificados bajo el T-MEC, junto con cuotas que restringen el acceso preferencial.
+
+        La entrada en vigor, originalmente fijada para el 19 de agosto de 2026, fue postergada tres días mediante una [proclamación adicional del 18 de agosto de 2026](https://www.whitehouse.gov/presidential-actions/2026/08/temporary-suspension-of-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-alcoholic-beverages-dairy-and-motor-vehicles/), mientras ambos países negociaban un acuerdo. Al no concretarse ese acuerdo, el arancel del 50% entró en vigor el 22 de agosto de 2026 y aplica incluso a mercancías originarias bajo el T-MEC.`, 
+    status: "implemented", 
+    fila: 5 
+},
 ];
