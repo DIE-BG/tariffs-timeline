@@ -109,12 +109,34 @@ const newsData = [
         status: "announced", 
         fila: 5 
     },
-    { 
-    fecha: "22 de agosto de 2026", 
-    resumen: `La Presidencia de EE. UU. firmó el 20 de julio de 2026 tres proclamaciones bajo la Sección 338 de la Ley Arancelaria de 1930, que imponen un arancel adicional del 50% sobre determinados productos canadienses de [bebidas alcohólicas](https://www.whitehouse.gov/presidential-actions/2026/07/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-alcoholic-beverages/), [lácteos](https://www.whitehouse.gov/presidential-actions/2026/07/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-dairy/) y [vehículos automotores](https://www.whitehouse.gov/presidential-actions/2026/07/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-motor-vehicles/), al determinar que Canadá discrimina en contra del comercio estadounidense en esos tres sectores. En bebidas alcohólicas, la medida responde a la suspensión, desde marzo de 2025, de la compra, distribución y venta de licores estadounidenses por parte de las juntas provinciales canadienses, sin restricciones equivalentes hacia otros países. En lácteos, se cuestiona que Canadá permita a minoristas acceder a la cuota arancelaria de quesos bajo el acuerdo con la Unión Europea, pero no bajo el T-MEC, lo que limita el acceso de exportadores estadounidenses. En vehículos, se objeta el esquema arancelario canadiense del 25% sobre autos estadounidenses no calificados bajo el T-MEC, junto con cuotas que restringen el acceso preferencial.
+    {
+        fecha: "22 de agosto de 2026",
+        resumen: `Entraron en vigor los aranceles adicionales del 50% establecidos por las tres proclamaciones que el presidente de EE. UU. firmó el 20 de julio de 2026 bajo la Sección 338 de la Ley Arancelaria de 1930. Las medidas responden a prácticas canadienses que el Gobierno estadounidense determinó discriminatorias contra su comercio en los sectores de [bebidas alcohólicas](https://www.whitehouse.gov/presidential-actions/2026/07/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-alcoholic-beverages/), [lácteos](https://www.whitehouse.gov/presidential-actions/2026/07/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-dairy/) y [vehículos automotores](https://www.whitehouse.gov/presidential-actions/2026/07/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-motor-vehicles/). Cada proclamación grava un conjunto específico de productos canadienses identificado en su Anexo II. La cobertura abarca mercancías de distintos sectores, incluidos vino, palos de hockey y cemento, según la [ficha informativa oficial](https://www.whitehouse.gov/fact-sheets/2026/07/fact-sheet-president-donald-j-trump-imposes-additional-tariffs-on-canada/).
 
-        La entrada en vigor, originalmente fijada para el 19 de agosto de 2026, fue postergada tres días mediante una [proclamación adicional del 18 de agosto de 2026](https://www.whitehouse.gov/presidential-actions/2026/08/temporary-suspension-of-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-alcoholic-beverages-dairy-and-motor-vehicles/), mientras ambos países negociaban un acuerdo. Al no concretarse ese acuerdo, el arancel del 50% entró en vigor el 22 de agosto de 2026 y aplica incluso a mercancías originarias bajo el T-MEC.`, 
-    status: "implemented", 
-    fila: 5 
-},
+        En bebidas alcohólicas, la justificación estadounidense señala las restricciones provinciales y territoriales a la compra, distribución o venta de productos estadounidenses iniciadas en marzo de 2025, sin restricciones equivalentes para otros países; Alberta y Saskatchewan levantaron sus prohibiciones en junio de 2025. En lácteos, cuestiona que los minoristas puedan acceder a la cuota arancelaria de quesos del acuerdo Canadá-Unión Europea, pero sean excluidos de la correspondiente cuota bajo el T-MEC. En vehículos, objeta el régimen canadiense que aplica un arancel del 25% a los automóviles estadounidenses que no califican bajo el T-MEC y, para los que sí califican, grava el contenido no originario de Canadá o México, además de establecer cuotas por fabricante.
+
+        La entrada en vigor, originalmente prevista para el 19 de agosto de 2026, fue postergada hasta las 00:01, hora del este, del 22 de agosto mediante una [proclamación del 18 de agosto de 2026](https://www.whitehouse.gov/presidential-actions/2026/08/temporary-suspension-of-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united-states-with-respect-to-alcoholic-beverages-dairy-and-motor-vehicles/), en el contexto de las negociaciones bilaterales. Los aranceles alcanzan a las mercancías cubiertas incluso cuando califican como originarias bajo el T-MEC, sujetos a las exclusiones previstas, entre ellas los productos gravados bajo la Sección 232.`,
+        status: "implemented",
+        fila: 5
+    },
+    {
+        fecha: "25 de agosto de 2026",
+        resumen: `El Gobierno de Canadá anunció aranceles de represalia del 15%, 25% y 50% sobre productos estadounidenses por un valor de 27,600 millones de dólares canadienses. La medida responde a los aranceles que Estados Unidos aplicó desde el 22 de agosto bajo las secciones 338 y 232. Canadá indicó que igualaría las medidas estadounidenses dólar por dólar y tasa por tasa.
+
+        Las contramedidas se concentrarían en productos de acero y aluminio, lácteos, electrodomésticos, maquinaria agrícola, pulpa y papel, plásticos y electrónica. La tasa aplicable a cada producto coincidiría con la tasa estadounidense correspondiente. Algunos productos de acero y aluminio, que ya estaban sujetos a un arancel canadiense del 25%, pasarían a una tasa del 50%.
+
+        Canadá anunció que las contramedidas entrarían en vigor a las 00:01 del 8 de septiembre de 2026. Los aranceles de represalia establecidos previamente sobre otros productos estadounidenses, incluidos los vehículos, continuarían vigentes. La medida fue acompañada por un paquete de apoyo de 7,500 millones de dólares canadienses para trabajadores y empresas afectados por el conflicto comercial.`,
+        status: "retaliation",
+        fila: 5
+    },
+    {
+        fecha: "8 de septiembre de 2026",
+        resumen: `Entraron en vigor los aranceles de represalia anunciados por Canadá el 25 de agosto de 2026 sobre productos estadounidenses por un valor de 27,600 millones de dólares canadienses. Las tasas del 15%, 25% y 50% se aplican según la partida arancelaria y buscan igualar dólar por dólar y tasa por tasa los aranceles estadounidenses establecidos bajo las secciones 338 y 232.
+
+        La [lista oficial consolidada](https://www.canada.ca/en/department-finance/programs/international-trade-finance-policy/canadas-response-us-tariffs/complete-list-us-products-subject-to-counter-tariffs.html), actualizada el 26 de agosto, incluye productos lácteos, acero y aluminio, electrodomésticos, maquinaria agrícola e industrial, pulpa y papel, plásticos, electrónicos, muebles, prendas de vestir y otros bienes. La revisión excluyó los pescados y mariscos estadounidenses e incorporó o ajustó partidas correspondientes, entre otros productos, a carbón vegetal, fotografías y diseños impresos, paneles de yeso, recipientes de vidrio y alambre de cobre.
+
+        Los aranceles se aplican únicamente a bienes originarios de Estados Unidos. Quedaron excluidas las mercancías que ya se encontraban en tránsito hacia Canadá al momento de la entrada en vigor. Los aranceles canadienses establecidos previamente sobre productos estadounidenses, incluidos los vehículos, permanecieron vigentes.`,
+        status: "retaliation",
+        fila: 5
+    },
 ];

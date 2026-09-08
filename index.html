@@ -141,15 +141,23 @@
         function renderStatusBadge(item) {
             const status = normalizeStatus(item.status);
 
-            if (status !== "threat") {
-                return "";
+            if (status === "threat") {
+                return `
+                    <span class="inline-flex items-center rounded-full border border-brand-red/20 bg-brand-red/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-brand-red">
+                        Amenaza
+                    </span>
+                `;
             }
 
-            return `
-                <span class="inline-flex items-center rounded-full border border-brand-red/20 bg-brand-red/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-brand-red">
-                    Amenaza
-                </span>
-            `;
+            if (status === "retaliation") {
+                return `
+                    <span class="inline-flex items-center rounded-full border border-brand-green/20 bg-brand-green/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-brand-green">
+                        Represalia
+                    </span>
+                `;
+            }
+
+            return "";
         }
 
         function initializeExpandableSummaries(root) {
