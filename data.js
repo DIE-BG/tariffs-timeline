@@ -130,6 +130,16 @@ const newsData = [
         fila: 5
     },
     {
+        fecha: "7 de septiembre de 2026",
+        resumen: `El presidente de EE. UU., Donald Trump, amenazó con impedir las ventas de aeronaves de la empresa canadiense Bombardier en el mercado estadounidense si no traslada su producción a Estados Unidos. La declaración se produjo en el contexto de la disputa comercial con Canadá, antes de la entrada en vigor de las contramedidas arancelarias canadienses del 8 de septiembre.
+
+        La amenaza corresponde a una restricción de acceso al mercado, no a un nuevo arancel. El presidente no precisó el mecanismo legal ni la fecha de aplicación. Según la información publicada el 8 de septiembre, la prohibición no había sido formalizada.
+
+        [Reuters](https://www.reuters.com/business/aerospace-defense/bombardier-shares-fall-after-trump-threatens-us-market-access-2026-09-08/)`,
+        status: "threat",
+        fila: 5
+    },
+    {
         fecha: "8 de septiembre de 2026",
         resumen: `Entraron en vigor los aranceles de represalia anunciados por Canadá el 25 de agosto de 2026 sobre productos estadounidenses por un valor de 27,600 millones de dólares canadienses. Las tasas del 15%, 25% y 50% se aplican según la partida arancelaria y buscan igualar dólar por dólar y tasa por tasa los aranceles estadounidenses establecidos bajo las secciones 338 y 232.
 
@@ -137,6 +147,24 @@ const newsData = [
 
         Los aranceles se aplican únicamente a bienes originarios de Estados Unidos. Quedaron excluidas las mercancías que ya se encontraban en tránsito hacia Canadá al momento de la entrada en vigor. Los aranceles canadienses establecidos previamente sobre productos estadounidenses, incluidos los vehículos, permanecieron vigentes.`,
         status: "retaliation",
+        fila: 5
+    },
+    {
+        fecha: "8 de septiembre de 2026",
+        resumen: `La Presidencia de EE. UU. emitió cinco proclamaciones bajo la Sección 338 de la Ley Arancelaria de 1930 para prohibir la importación de determinados productos canadienses y modificar la cobertura de los aranceles adicionales del 50% sobre otros bienes de Canadá. Las medidas responden a las contramedidas canadienses y a prácticas que el Gobierno estadounidense considera discriminatorias contra su comercio.
+
+        Tres proclamaciones establecen prohibiciones de importación para determinadas bebidas alcohólicas, productos lácteos, motocicletas y otros bienes incluidos en las listas oficiales. Entre los productos afectados figuran vinos, licores, suero de leche, ciertos quesos y melazas. Las prohibiciones entrarán en vigor el 29 de septiembre de 2026 y sustituirán el tratamiento arancelario previo para las mercancías cubiertas.
+
+        Las otras dos proclamaciones modifican las listas de productos sujetos al arancel adicional del 50%, establecido en relación con las disputas sobre bebidas alcohólicas y vehículos automotores. Incorporan determinados bienes y excluyen otros, entre ellos papel higiénico, sal para carreteras, cemento y cañas de pescar. Según la información publicada, los productos incorporados sustituyen a los excluidos por un valor comercial similar.
+
+        Las incorporaciones y exclusiones arancelarias entrarán en vigor el 15 de septiembre de 2026. La exclusión de un producto de estas listas elimina el arancel adicional correspondiente, pero no necesariamente otros derechos aplicables.
+
+        [Ficha informativa, Casa Blanca](https://www.whitehouse.gov/fact-sheets/2026/09/fact-sheet-president-donald-j-trump-responds-to-canadas-retaliation/)
+
+        [Reuters](https://www.reuters.com/business/autos-transportation/canadas-retaliatory-tariffs-take-effect-us-trade-talks-stall-2026-09-08/)
+
+        [The Canadian Press](https://toronto.citynews.ca/2026/09/09/canada-to-blame-for-washingtons-escalation-of-trade-war-says-trump-trade-czar/)`,
+        status: "announced",
         fila: 5
     },
 ];
