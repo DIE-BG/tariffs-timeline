@@ -1,6 +1,6 @@
 # Tariff News Prompt
 
-Search for all factual news published between September 8 and September 14,
+Search for all factual news published between September 14 and September 22,
 2026, regarding tariff-related actions taken by the United States government.
 Include all industries and all types of actions: new tariffs, increases,
 suspensions, official threats, or proposals.  Also include any retaliatory
@@ -19,7 +19,7 @@ Include links to official government sites and top-tier news outlets.
 
 # General News Prompt
 
-Busca en la web noticias publicadas entre el 8 de septiembre y el 14 de
+Busca en la web noticias publicadas entre el 14 de septiembre y el 22 de
 septiembre de 2026, inclusive, para elaborar un resumen semanal dirigido a
 economistas y responsables de política económica de un banco central.
 

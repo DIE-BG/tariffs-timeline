@@ -167,4 +167,34 @@ const newsData = [
         status: "announced",
         fila: 5
     },
+        {
+        fecha: "15 de septiembre de 2026",
+        resumen: `Entraron en vigor las modificaciones a la cobertura de los aranceles adicionales del 50% aplicados por Estados Unidos a determinados productos canadienses bajo la Sección 338 de la Ley Arancelaria de 1930. Los cambios habían sido anunciados mediante las proclamaciones del 8 de septiembre relacionadas con las disputas sobre bebidas alcohólicas y vehículos automotores.
+
+        La modificación incorporó 122 clasificaciones del Sistema Armonizado a las listas sujetas al arancel adicional y retiró 10 clasificaciones. Entre los productos incorporados figuran vehículos todoterreno y productos lácteos adicionales. Las exclusiones comprenden determinadas bebidas espirituosas, sal, cemento, productos de papel, plomo, equipos eléctricos y cañas de pescar.
+
+        Las mercancías incorporadas quedan sujetas al arancel adicional del 50% aunque califiquen como originarias bajo el T-MEC. El gravamen se aplica además de otros derechos vigentes, incluidos los establecidos bajo la Sección 232 y los derechos antidumping o compensatorios correspondientes.
+
+        [Guía oficial de la Oficina de Aduanas y Protección Fronteriza](https://content.govdelivery.com/accounts/USDHSCBP/bulletins/429db0c)
+
+        [Proclamación sobre bebidas alcohólicas, Registro Federal](https://www.federalregister.gov/documents/2026/09/14/2026-18838/modifying-the-scope-of-products-of-canada-subject-to-the-additional-duties-imposed-to-offset)
+
+        [Proclamación sobre vehículos automotores, Registro Federal](https://www.federalregister.gov/documents/2026/09/14/2026-18839/modifying-the-scope-of-products-of-canada-subject-to-the-additional-duties-imposed-to-offset)`,
+        status: "implemented",
+        fila: 5
+    },
+    {
+        fecha: "18 de septiembre de 2026",
+        resumen: `El presidente de EE. UU., Donald Trump, promulgó la Ley Lindsey O. Graham de Sanciones contra Rusia e Irán de 2026, que establece nuevas facultades y mandatos legales para imponer aranceles relacionados con Rusia, sus compradores de energía y las redes que facilitan la evasión de sanciones.
+
+        La ley ordena imponer aranceles de hasta el 500% sobre todos los bienes originarios de Rusia. También dispone aranceles superiores a cero y de hasta el 100% sobre todos los bienes procedentes de países que realicen nuevas compras de petróleo crudo o gas natural ruso, que se encuentren entre los cinco principales importadores de esos productos o que figuren entre los cinco países que más facilitan la evasión de sanciones petroleras.
+
+        Al momento de la promulgación no se habían identificado oficialmente los países que quedarían sujetos a los aranceles secundarios ni las tasas concretas que se aplicarían. El Representante Comercial de Estados Unidos deberá revisar cada 180 días la lista de posibles países afectados. Por tanto, la promulgación creó el mandato y la autoridad arancelaria, pero no constituyó todavía la aplicación de una tasa específica a un socio comercial determinado.
+
+        [Confirmación oficial de la promulgación, Casa Blanca](https://www.whitehouse.gov/briefings-statements/2026/09/congressional-bill-h-r-5334-signed-into-law/)
+
+        [Resumen oficial de las disposiciones arancelarias, Comité de Medios y Arbitrios](https://waysandmeans.house.gov/2026/09/16/chairman-smith-statement-on-house-passage-of-legislation-to-impose-sanctions-on-russia-use-tariff-policies-to-curtail-support-for-russias-war-on-ukraine/)`,
+        status: "announced",
+        fila: 5
+    },
 ];
