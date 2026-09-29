@@ -197,4 +197,28 @@ const newsData = [
         status: "announced",
         fila: 5
     },
+    {
+        fecha: "23 de septiembre de 2026",
+        resumen: `Estados Unidos y China acordaron extender hasta el 10 de enero de 2027 la tregua comercial que vencía el 10 de noviembre de 2026. La extensión mantiene suspendida la escalada de sus medidas arancelarias mientras continúan las negociaciones. No establece una nueva reducción de tasas.
+
+        [Reuters](https://www.reuters.com/world/asia-pacific/us-treasurys-bessent-chinas-he-meet-unfinished-business-before-trump-xi-summit-2026-09-23/)
+
+        [Ministerio de Comercio de China](https://www.mofcom.gov.cn/syxwfb/art/2026/art_d9ea01824fc44fd8a29f7dc3f8ca9c72.html)`,
+        status: "implemented",
+        fila: 5
+    },
+    {
+        fecha: "29 de septiembre de 2026",
+        resumen: `Entró en vigor la segunda fase del arancel de la Sección 232 sobre productos farmacéuticos patentados, ingredientes activos y materiales iniciales clave. La medida, establecida el 2 de abril, comenzó a aplicarse a las empresas que no estaban incluidas en la primera fase del 31 de julio. La tasa general es del 100% menos el arancel base, con tasas y excepciones para determinados países, empresas y productos; los medicamentos genéricos quedan fuera. Una notificación del 23 de septiembre precisó los requisitos para aplicar una tasa adicional del 0% a ciertos productos especializados y a bienes destinados exclusivamente a investigación o ensayos clínicos.
+
+        Ese mismo día entraron en vigor las prohibiciones de importación de determinados productos canadienses, anunciadas el 8 de septiembre. Abarcan ciertas bebidas alcohólicas, productos lácteos y motocicletas incluidos en las listas oficiales. Para las mercancías prohibidas, la restricción sustituye el tratamiento arancelario anterior.
+
+        [Notificación sobre productos farmacéuticos](https://www.govinfo.gov/content/pkg/FR-2026-09-23/html/2026-19498.htm)
+
+        [Proclamación sobre productos farmacéuticos](https://www.whitehouse.gov/presidential-actions/2026/04/adjusting-imports-of-pharmaceuticals-and-pharmaceutical-ingredients-into-the-united-states/)
+
+        [Proclamaciones sobre Canadá: bebidas alcohólicas](https://www.whitehouse.gov/presidential-actions/2026/09/excluding-certain-canadian-alcoholic-beverages-from-importation-into-the-united-states-in-response-to-continued-discrimination-against-the-commerce-of-the-united-states-with-respect-to-alcoholic-bever/), [lácteos](https://www.whitehouse.gov/presidential-actions/2026/09/excluding-certain-canadian-products-from-importation-into-the-united-states-in-response-to-continued-discrimination-against-the-commerce-of-the-united-states-with-respect-to-dairy/) y [vehículos](https://www.whitehouse.gov/presidential-actions/2026/09/excluding-certain-canadian-products-from-importation-into-the-united-states-in-response-to-continued-discrimination-against-the-commerce-of-the-united-states-with-respect-to-motor-vehicles/)`,
+        status: "implemented",
+        fila: 5
+    },
 ];
